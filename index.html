@@ -1,59 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>!-->
+<script type="text/javascript"></script>
+
 <style> 
-
-.tabs {
-  position: relative;   
-  min-height: 200px; /* This part sucks */
-  clear: both;
-  margin: 25px 0;
-}
-.tab {
-  float: left;
-}
-.tab label {
-  background: #eee; 
-  padding: 10px; 
-  border: 1px solid #ccc; 
-  margin-left: -1px; 
-  position: relative;
-  left: 1px; 
-}
-.tab [type=radio] {
-  display: none;   
-}
-.content {
-  position: absolute;
-  top: 28px;
-  left: 0;
-  background: white;
-  right: 0;
-  bottom: 0;
-  padding: 20px;
-  border: 1px solid #ccc; 
-  opacity: 0.0;
-  filter: alpha(opacity=0); /* For IE8 and earlier */
-}
-[type=radio]:checked ~ label {
-  background: white;
-  border-bottom: 1px solid white;
-  z-index: 2;
-}
-[type=radio]:checked ~ label ~ .content {
-	opacity: 0.7;
-  filter: alpha(opacity=70); /* For IE8 and earlier */		
-  z-index: 1;
-}
-
 #myDIV{
     width:1500px ;
     height:550px ;
     position: absolute;
-    background-image: url('sky.jpg');
+    background-image: url('day.jpg');
     background-position: top left;
-    -webkit-animation: backgroundScroll 2s linear infinite;
-    animation: backgroundScroll 2s linear infinite;
+    -webkit-animation: backgroundScroll 1s linear infinite;
+    animation: backgroundScroll 1s linear infinite;
 	
 }
 
@@ -66,178 +25,200 @@ to {background-position: -400px 0;}
 from {background-position: 0 0;}
 to {background-position: -400px 0;}
 }
-
-.stationary_enemy1 > img {
-	
-	
-    -webkit-animation: enemy_move_div 2s linear infinite;
-    animation: enemy_move_div 2s linear infinite;
-	
-	opacity: 0.4;
-	filter: alpha(opacity=40); /* For IE8 and earlier */
-	 
-}
-
-@-webkit-keyframes  enemy_move_div {
-	from {transform: translate(800px,0px);}
-	to {transform: translate(0px,0px);}
-}
- 
-@keyframes  enemy_move_div {
-	from {transform: translate(800px,0px);}
-	to {transform: translate(0px,0px);}
-}
-
-.stationary_enemy2 > img{
-    -webkit-animation: enemy_move 2s linear infinite;
-    animation: enemy_move 2s linear infinite;
-	opacity: 0.4;
-	filter: alpha(opacity=40); /* For IE8 and earlier */
-	 z-index: 2;
-}
-
-@-webkit-keyframes  enemy_move {
-	from {transform: translate(800px,0px);}
-	to {transform: translate(0px,0px);}
-}
- 
-@keyframes  enemy_move {
-	from {transform: translate(800px,0px);}
-	to {transform: translate(0px,0px);}
-}
-
-.stationary_enemy3{
-	position:relative;
-	top: -350px;
-	
-	z-index: 1;
-}
-
-.stationary_enemy3 > img{
-    -webkit-animation: enemy_move 2s linear infinite;
-    animation: enemy_move 2s linear infinite;
-	opacity: 0.4;
-	filter: alpha(opacity=40); /* For IE8 and earlier */
-	 
-}
-
-@-webkit-keyframes  enemy_move {
-	from {transform: translate(800px,0px);}
-	to {transform: translate(0px,0px);}
-}
- 
-@keyframes  enemy_move {
-	from {transform: translate(800px,0px);}
-	to {transform: translate(0px,0px);}
-}
-
-
-.moving_enemy{
-	text-align:right;
-	
-	z-index: 2;
-}
-.moving_enemy > img{
-    -webkit-animation: enemy_moveing 4s linear infinite;
-    animation: enemy_moveing 4s linear infinite;
-	opacity: 0.4;
-	filter: alpha(opacity=40); /* For IE8 and earlier */
-	 z-index: 2;
-}
-
-@-webkit-keyframes  enemy_moveing {
-	0%   {transform: translate(-200px,-500x);}
-    25%  {transform: translate(-400px,-200px);}
-	40%  {transform: translate(-600px,-500px);}
-    75%  {transform: translate(-800px,-200px);}
-	85%  {transform: translate(-1000px,-500px);}
-    100% {transform: translate(-1200px,-200px);}
-}
- 
-@keyframes  enemy_moveing {
-	0%   {transform: translate(-200px,-500x);}
-    25%  {transform: translate(-400px,-200px);}
-	40%  {transform: translate(-600px,-500px);}
-    75%  {transform: translate(-800px,-200px);}
-	85%  {transform: translate(-1000px,-500px);}
-    100% {transform: translate(-1200px,-200px);}
+body{
+  overflow: hidden;
 }
 
 </style>
 </head>
-<body>
-<div id="myDIV">
+<body onload="enemy_animi()" onkeydown="moveSelection(event)" onkeyup="">
+
+
+<div id="myDIV">	
+
+<div class="container">
+	<div id="move">
+		
+	   <input type="radio" id="tab-3" name="tab-group-2"  checked>
+       <label for="tab-2">Start Animi</label>
+	</div>   
+	 <div id="s1" style="width:100px;height:40px;top:0px;left:0px;position:relative;">  
+			<img class="friend" id="friend" src="batman.jpg" width="110" height="90" >
+	</div>
+	<div id="enemy" style="position:relative; left:400px;">
+		<img class="enemy4" src="joker1.jpg" width="110" height="90">
+	</div>
 	
+	<div id="enemy_rand" style="position:relative; left:200px;">
+		<img class="enemy5" src="statenemy.jpg" width="110" height="90">
+	</div>
+	<div id="demo"> x= y= </div>
+	
+</div>	
+
 </div>
-
-
-<div class="tabs">
-    
-   <div class="tab">
-       <input type="radio" id="tab-1" name="tab-group-1" onclick="myFunction()" checked>
-       <label for="tab-1">Up</label>
-       
-       <div class="content">
-           <img class="friend" id="friend" src="batman.jpg" width="110" height="90" style="transform: translate(0,20px);">
-       </div> 
-   </div>
-    
-   <div class="tab">
-       <input type="radio" id="tab-2" name="tab-group-1" onclick="checkCollision()">
-       <label for="tab-2">Middle</label>
-       
-       <div class="content">
-			<img class="friend" id="friend" src="batman.jpg" width="110" height="90" style="transform: translate(0,180px);">
-       </div> 
-   </div>
-    
-    <div class="tab">
-       <input type="radio" id="tab-3" name="tab-group-1" onclick="checkCollision()">
-       <label for="tab-3">Down</label>
-     
-       <div class="content">
-          <img class="friend" id="friend" src="batman.jpg" width="110" height="90" style="transform: translate(0,280px);">
-       </div> 
-   </div>
-    
-</div>
-
-<div class="stationary_enemy1">
-	<img class="enemy1" src="batman.jpg" width="110" height="90">
-</div>
-
-<div class="stationary_enemy2">
-	<img class="enemy2" src="batman.jpg" width="110" height="90">
-</div>
-
-<div class="stationary_enemy3">
-	<img class="enemy3" src="batman.jpg" width="110" height="90">
-</div>
-
-<div class="moving_enemy">
-	<img class="enemy4" src="batman.jpg" width="110" height="90">
-</div>
-
-</body>
 <script>
 	
-	function checkCollision() {
-           //Test for collision
-			var hit_list;
-            hit_list = $(".friend").collision(".enemy1");
-            if (hit_list.length != 0) {
-                alert("Game Over!");
-                
-            } 
-        }
+	
+	window.onload = function(){init();
+	
+	enemy_animi();
+	};
+	
+	function init(){
+		var element = document.getElementById("s1");
+	}	
+	/*
+	function move_up(){
+	 $("#s1").css("position", "absolute").animate({
+      left: 159,
+      top:  230
+    });
+	}
+	function move_down(){
+		$("#s1").css("position", "absolute").animate({
+      left: 159,
+      top:  430
+    });
+	
+	}
+	*/
+	
+	function enemy_animi(){
+		document.getElementById("demo").innerHTML = "Inside animie";
+		myVar1 = setInterval(checkCollision, 50);
+		myVar = setInterval(enemy_move1, 1000);
+		myVar2 = setInterval(enemyrand, 1000);
 		
-		function myFunction() {
-			
-			var element=document.getElementById("tab-1")
-			document.getElementById("tab-1").outerhtml("Game Over!");
-}
+	}
+	
+	function enemy_move1(){
+	console.log("in enemy_move1");
+		document.getElementById("demo").innerHTML = "Inside enemy";
+		var element = document.getElementById("enemy");
+				var n = (element.style.left)?parseInt(element.style.left):0;
+				if (n > 0)
+					element.style.left = parseInt(element.style.left) - 50 + 'px';
+				if(n==0)
+					element.style.left = parseInt(element.style.left) + 500 + 'px';
+	}
+	
+	function enemyrand(){
+	console.log("in enemy_move2");
+		
+		var element = document.getElementById("enemy_rand");
+				var n = (element.style.left)?parseInt(element.style.left):0;
+				
+				if (n > 0 ){
+					element.style.left = parseInt(element.style.left) - 5 + 'px';
+					
+				
+				}
+					
+				if(n==0) {
+					element.style.left = parseInt(element.style.left) + 500 + 'px';
+					
+				}
+					
+				
+						
+	}
+	
+	
+	
+	var character = document.getElementById("s1");
+	var ground    = document.getElementById("enemy");
+	
+	
+	function checkCollision(){
+	
+	document.getElementById("demo").innerHTML = "Inside collison";
+    
+	var mostLeft = 159;
+	var mostTop = 228;
+	var element = document.getElementById('enemy');
+		var position_enemy = element.getBoundingClientRect();
+		var ex_min = position_enemy.left;
+		var ex_max = ex_min + 110;
+		var ey_min = position_enemy.top;
+		var ey_max = ey_min + 90;
+		
+	var element2 = document.getElementById('enemy_rand');
+		var position_enemy2 = element2.getBoundingClientRect();
+		var ex_min2 = position_enemy2.left;
+		var ex_max2 = ex_min2 + 110;
+		var ey_min2 = position_enemy2.top;
+		var ey_max2 = ey_min2 + 90;	
+		
+	var element1 = document.getElementById('s1');
+		var position_friend = element1.getBoundingClientRect();
+		var fx = position_friend.left;
+		var fy = position_friend.top;
+		
+		
+		document.getElementById("demo").innerHTML = "enemy2_xmin=" + ex_min2 + "," + "enemy2_xmax=" + ex_max2 + "enemy2_ymin=" + ey_min2 + "," + "enemy2_ymax=" + ey_max2 + "\\\\" + "friend_x:" + fx + "friend_y:" + fy;
+			if((ex_min <= fx && fx <= ex_max) && (ey_min <= fy && fy <= ey_max)) {
+				document.getElementById("demo").innerHTML = "Game Over!";
+				
+				} 
+			if((ex_min2 <= fx && fx <= ex_max2) && (ey_min2 <= fy && fy <= ey_max2)) {
+				document.getElementById("demo").innerHTML = "Game Over!";
+				
+				} 	
+	}
+	
+	
+	
+	/////MoVEMENT//////
+	function leftArrowPressed() {
+                var element = document.getElementById("s1");
+				var n = parseInt(element.style.left);
+				if (n > 0)
+					element.style.left = parseInt(element.style.left) - 10 + 'px';
+            }
 
+    function rightArrowPressed() {
+            var element = document.getElementById("s1");
+			var n = parseInt(element.style.left);
+			if (n < 700)
+				element.style.left = parseInt(element.style.left) + 10 + 'px';
+        }
 
+    function upArrowPressed() {
+            var element = document.getElementById("s1");
+            var n = parseInt(element.style.top);
+			if (n > 0)
+				element.style.top = parseInt(element.style.top) - 10 + 'px';
+    }
 
+    function downArrowPressed() {
+            var element = document.getElementById("s1");
+			var n = parseInt(element.style.top);
+			if (n < 410)
+				element.style.top = parseInt(element.style.top) + 10 + 'px';
+    }
+
+    function moveSelection(event) {                    
+        switch (event.keyCode) {
+            case 37:
+                leftArrowPressed();
+            break;
+
+            case 39:
+                rightArrowPressed();
+            break;
+
+           case 38:
+                upArrowPressed();
+            break;
+
+            case 40:
+                downArrowPressed();
+            break;
+                }
+    };
 </script>
+
+
+
 </html>
